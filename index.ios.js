@@ -13,6 +13,8 @@ import {
   Image
 } from 'react-native';
 
+var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+
 var MOCKED_MOVIES_DATA = [
   {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
 ];
@@ -23,9 +25,11 @@ class sampleAppMovies extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{movie.title}</Text>
-        <Text>{movie.year}</Text>
         <Image style={styles.thumbnail} source={{uri: movie.posters.thumbnail}} />
+        <View style={styles.rightContainer}>
+          <Text style={styles.title}>{movie.title}</Text>
+          <Text style={styles.year}>{movie.year}</Text>
+        </View>
       </View>
     );
   }
@@ -34,9 +38,13 @@ class sampleAppMovies extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  rightContainer:{
+    flex: 1,
   },
   welcome: {
     fontSize: 20,
@@ -51,6 +59,14 @@ const styles = StyleSheet.create({
   thumbnail: {
     height: 81,
     width: 53
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 20,
+    marginBottom: 8,
+  },
+  year: {
+    textAlign: 'center',
   }
 });
 
