@@ -9,23 +9,23 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
+
+var MOCKED_MOVIES_DATA = [
+  {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
+];
+
+var movie = MOCKED_MOVIES_DATA[0];
 
 class sampleAppMovies extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <Text>{movie.title}</Text>
+        <Text>{movie.year}</Text>
+        <Image style={styles.thumbnail} source={{uri: movie.posters.thumbnail}} />
       </View>
     );
   }
@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  thumbnail: {
+    height: 81,
+    width: 53
+  }
 });
 
 AppRegistry.registerComponent('sampleAppMovies', () => sampleAppMovies);
